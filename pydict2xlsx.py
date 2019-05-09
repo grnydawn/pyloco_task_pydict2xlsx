@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import csv
+import sys
 from openpyxl import Workbook
 from pyloco import Task
 
@@ -17,30 +18,30 @@ Current version of the task assumes that 'docx2text' pyloco task is used as
 a previous task as shown below.
 
 First, make sure that 'docx2text' task is installed by running the following
-command.
+command.::
 
->>> pyloco docx2text -h
+    >>> pyloco docx2text -h
 
 You will see a help message of 'docx2text' on screen. If failed, please use
-following command to install.
+following command to install.::
 
->>> pyloco install docx2text
-
-Follwoing command reads my.docx MS World file and convert tables in the file
-to worksheets of MS Excel file.
-
->>> pyloco docx2text my.docx -- pydict2xlsx -t xlsx
-tables.xlsx
+    >>> pyloco install docx2text
 
 Follwoing command reads my.docx MS World file and convert tables in the file
-to CSV format text file. 
+to worksheets of MS Excel file.::
 
->>> pyloco docx2text my.docx -- pydict2xlsx -t csv
-tables.csv
+    >>> pyloco docx2text my.docx -- pydict2xlsx -t xlsx
+    tables.xlsx
+
+Follwoing command reads my.docx MS World file and convert tables in the file
+to CSV format text file.::
+
+    >>> pyloco docx2text my.docx -- pydict2xlsx -t csv
+    tables.csv
 """
 
     _name_ = "pydict2xlsx"
-    _version_ = "0.1.0"
+    _version_ = "0.1.1"
 
     def __init__(self, parent):
 
@@ -68,7 +69,6 @@ tables.csv
                 ws = wb.create_sheet(str(tid))
                 for rid, row in table.items():
                     for cid, cell in row.items():
-                        import pdb; pdb.set_trace()
                         c = ws.cell(row=rid+1, column=cid+1, value=cell)
 
             # Save the file
