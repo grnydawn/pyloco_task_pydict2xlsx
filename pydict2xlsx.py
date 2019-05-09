@@ -18,23 +18,23 @@ Current version of the task assumes that 'docx2text' pyloco task is used as
 a previous task as shown below.
 
 First, make sure that 'docx2text' task is installed by running the following
-command.::
+command. ::
 
     >>> pyloco docx2text -h
 
 You will see a help message of 'docx2text' on screen. If failed, please use
-following command to install.::
+following command to install. ::
 
     >>> pyloco install docx2text
 
 Follwoing command reads my.docx MS World file and convert tables in the file
-to worksheets of MS Excel file.::
+to worksheets of MS Excel file. ::
 
     >>> pyloco docx2text my.docx -- pydict2xlsx -t xlsx
     tables.xlsx
 
 Follwoing command reads my.docx MS World file and convert tables in the file
-to CSV format text file.::
+to CSV format text file. ::
 
     >>> pyloco docx2text my.docx -- pydict2xlsx -t csv
     tables.csv
