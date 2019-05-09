@@ -41,7 +41,7 @@ to CSV format text file. ::
 """
 
     _name_ = "pydict2xlsx"
-    _version_ = "0.1.1"
+    _version_ = "0.1.2"
 
     def __init__(self, parent):
 
@@ -52,11 +52,10 @@ to CSV format text file. ::
                 help="output file format (default='xlsx')") 
 
         self.add_option_argument(
-            "-o", "--output", help=("generate output file")
+            "-o", "--output", help=("output file")
         )
 
-        #self.register_forward("data", help="output items extracted from "
-        #                      "the input MS Word file")
+        self.register_forward("data", help="output data")
 
     def perform(self, targs):
 
@@ -75,6 +74,8 @@ to CSV format text file. ::
             outfile = targs.output if targs.output else "tables.xlsx"
             wb.save(outfile)
 
+            self.add_forward(data=wb)
+
         elif targs.type == "csv":
 
             outfile = targs.output if targs.output else "tables.csv"
@@ -89,6 +90,7 @@ to CSV format text file. ::
                             value = cell.replace("\n", " ").replace(",", " ")
                             writer.writerow([tid, rid, cid, value])
 
+                self.add_forward(data=tables)
         else:
             print("Unknown output type: %s" % targs.type)
             sys.exit(1)

@@ -25,7 +25,7 @@ Command-line syntax
 -------------------
 
 usage: pyloco pydict2xlsx [-h] [-t type] [-o OUTPUT] [--general-arguments]
-                          data
+                          data 
 
 converts Python dictionary to Microsoft Excel file
 
@@ -36,9 +36,12 @@ optional arguments:
   -h, --help            show this help message and exit
   -t type, --type type  output file format (default='xlsx')
   -o OUTPUT, --output OUTPUT
-                        generate output file
+                        output file
   --general-arguments   Task-common arguments. Use --verbose to see a list of
                         general arguments
+
+forward output variables:
+   data                 output data
 
 
 Example(s)
