@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import csv
+import io
 import sys
 from openpyxl import Workbook
 from pyloco import Task
@@ -41,7 +42,7 @@ to CSV format text file. ::
 """
 
     _name_ = "pydict2xlsx"
-    _version_ = "0.1.2"
+    _version_ = "0.1.3"
 
     def __init__(self, parent):
 
@@ -79,7 +80,7 @@ to CSV format text file. ::
         elif targs.type == "csv":
 
             outfile = targs.output if targs.output else "tables.csv"
-            with open(outfile, 'w') as csvfile:
+            with io.open(outfile, 'w', encoding="utf-8") as csvfile:
                 writer = csv.writer(csvfile, delimiter=',',
                                         quotechar='|', quoting=csv.QUOTE_MINIMAL)
 
