@@ -1,6 +1,6 @@
-==================
-'pydict2xlsx' task
-==================
+================================
+'pydict2xlsx' task version 0.1.3
+================================
 
 'pydict2xlsx' task converts a Python dictionary to Microsoft Excel file
 or CSV file.
@@ -17,7 +17,7 @@ Or, if 'pyloco' is already installed, upgrade 'pyloco' with the following comman
 
     >>> pip install -U pyloco
 
-To install 'pydict2xlsx' task, run the following 'pyloco' command. ::
+To install 'pydict2xlsx' task, run the following 'pyloco' command.  ::
 
     >>> pyloco install pydict2xlsx
 
