@@ -42,7 +42,7 @@ to CSV format text file. ::
 """
 
     _name_ = "pydict2xlsx"
-    _version_ = "0.1.3"
+    _version_ = "0.1.4"
 
     def __init__(self, parent):
 
@@ -66,7 +66,10 @@ to CSV format text file. ::
             wb = Workbook()
 
             for tid, table in tables.items():
-                ws = wb.create_sheet(str(tid))
+                if tid == 0:
+                    ws = wb.active
+                else:
+                    ws = wb.create_sheet(str(tid))
                 for rid, row in table.items():
                     for cid, cell in row.items():
                         c = ws.cell(row=rid+1, column=cid+1, value=cell)
