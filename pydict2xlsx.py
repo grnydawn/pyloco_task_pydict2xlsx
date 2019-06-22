@@ -3,8 +3,13 @@
 import csv
 import io
 import sys
-from openpyxl import Workbook
 from pyloco import Task
+try:
+    from openpyxl import Workbook
+except ModuleNotFoundError:
+    print("ERROR: Python module 'openpyxl' is not installed. Please run "
+          "'pip install openpyxl' first.")
+    sys.exit(-1)
 
 class Pydict2xlsx(Task):
     """converts Python dictionary to Microsoft Excel file
@@ -43,6 +48,7 @@ to CSV format text file. ::
 
     _name_ = "pydict2xlsx"
     _version_ = "0.1.4"
+    _install_require_ = ["docx2text"]
 
     def __init__(self, parent):
 
@@ -51,6 +57,10 @@ to CSV format text file. ::
         self.add_option_argument("-t", "--type", metavar="type",
                 default="xlsx", 
                 help="output file format (default='xlsx')") 
+
+        self.add_option_argument("-e", "--encoding",
+                default=sys.stdout.encoding, 
+                help="output encoding (default='%s')" % sys.stdout.encoding) 
 
         self.add_option_argument(
             "-o", "--output", help=("output file")
@@ -83,7 +93,7 @@ to CSV format text file. ::
         elif targs.type == "csv":
 
             outfile = targs.output if targs.output else "tables.csv"
-            with io.open(outfile, 'w', encoding="utf-8") as csvfile:
+            with io.open(outfile, 'w', encoding=targs.encoding) as csvfile:
                 writer = csv.writer(csvfile, delimiter=',',
                                         quotechar='|', quoting=csv.QUOTE_MINIMAL)
 
